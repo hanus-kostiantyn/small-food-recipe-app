@@ -1,4 +1,5 @@
 import { createContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const GlobalContext = createContext(null);
 
@@ -9,18 +10,20 @@ export default function GlobalState({ children }) {
     const [recipeDetailsData, setRecipeDetailsData] = useState(null);
     const [favoritesList, setFavoritesList] = useState([]);
 
+    const navigate = useNavigate();
+
     async function handleSubmit(e) {
         e.preventDefault();
         try {
             const res = await fetch(
                 `https://forkify-api.herokuapp.com/api/v2/recipes?search=${searchParam}`
             );
-
             const data = await res.json();
             if (data?.data?.recipes) {
                 setRecipeList(data?.data?.recipes);
             }
             console.log(data);
+            navigate("/");
         } catch (e) {
             console.log(e);
         } finally {

@@ -1,3 +1,7 @@
+import RecipeItem from "../../components/recipe-item";
+import { useContext } from "react";
+import { GlobalContext } from "../../context";
+
 export default function Favorites() {
     const { favoritesList } = useContext(GlobalContext);
 
@@ -8,7 +12,7 @@ export default function Favorites() {
             ) : (
                 <div>
                     <p className="lg:text-4x1 text-x1 text-center text-black font-extrabold">
-                        Nothing to show. Please search something.
+                        Nothing is added in favorites.
                     </p>
                 </div>
             )}
